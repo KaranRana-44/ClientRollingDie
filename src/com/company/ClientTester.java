@@ -30,8 +30,27 @@ public class ClientTester {
     //               by client
     // postcondition: list1 and list2 are not modified
 
-    public static void prefixMerge(Client [] list1, Client [] list2,
-                                   Client[] result){
+    public static void prefixMerge(Client [] list1, Client [] list2, Client[] result){
+//        int i=0;
+//        if(list1[0].compareClient(list2[0])==0) {
+//            if (list1[0].getID() > list2[0].getID()) {
+//                result[0] = list1[0];
+//                result[0] = list2[0];
+//                i+=2;
+//            }
+//        }
+        for(int i=0; i<result.length;i++){
+            if(list1[0].compareClient(list2[0])==0){
+                if (list1[0].getID() > list2[0].getID()) {
+                    result[0] = list1[0];
+                    result[0] = list2[0];
+                    i += 2;
+                }
+            }
+            else if(list1[0].compareClient(list2[0])==1){
+
+            }
+        }
 
 
     }
