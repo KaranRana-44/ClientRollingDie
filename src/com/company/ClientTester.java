@@ -31,28 +31,27 @@ public class ClientTester {
     // postcondition: list1 and list2 are not modified
 
     public static void prefixMerge(Client [] list1, Client [] list2, Client[] result){
-//        int i=0;
-//        if(list1[0].compareClient(list2[0])==0) {
-//            if (list1[0].getID() > list2[0].getID()) {
-//                result[0] = list1[0];
-//                result[0] = list2[0];
-//                i+=2;
-//            }
-//        }
-        for(int i=0; i<result.length;i++){
-            if(list1[0].compareClient(list2[0])==0){
-                if (list1[0].getID() > list2[0].getID()) {
-                    result[0] = list1[0];
-                    result[0] = list2[0];
-                    i += 2;
-                }
-            }
-            else if(list1[0].compareClient(list2[0])==1){
+//
+        int c1=0;
+        int c2=0;
 
+        for(int i=0; i<result.length;i++){
+            int c=list1[c1].compareClient(list2[c2]);
+            if(c==0){
+                result[i] = list1[c1];
+                c1++;
+                c2++;
+                }
+
+            else if(c>0){
+                result[i]= list2[c2];
+                c2++;
+            }
+            else{
+                result[i]=list1[c1];
+                c1++;
             }
         }
-
-
     }
 
     public static void main(String [] args){

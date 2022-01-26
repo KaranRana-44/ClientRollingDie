@@ -11,6 +11,8 @@ Result: 1  5  5  4  3  1  2  2  2  6  1  3  3  5  5  5  5  5
 The die is represented by the following class:
 */
 
+import java.sql.SQLOutput;
+
 public class RollingDie {
     /** @return an integer value between 1 and 6
      */
@@ -50,24 +52,28 @@ public class RollingDie {
     public int getBestRun(int[] values)
     {
         int count=0;
-        int save=0;
-        for(int i=0; i<values.length; i++){
-            if(values[i]==this.toss()) {
+        int prevcount=1;
+        int currval=values[0];
+        int prevpos=0;
+        int currpos=0;
+
+
+        for(int i=1; i<values.length; i++){
+            if(values[i]==currval) {
                 count++;
-                for (int k=i; k<values.length; k++){
-                    if(values[k]==this.toss()) {
-                        count++;
-                    }
-                    else k=values.length;
                 }
+            else{
+                if(count>prevcount){
+                    prevcount=count;
+                    prevpos=currpos;
+                }
+                currpos=i;
+                count=1;
+                currval=values[i];
             }
-
-            if(count>save){
-                save=count;
-            }
-
         }
-        return save;
+        if (prevcount==1){return -1;}
+        return prevpos+1;
 
           //replace this
     }
@@ -85,6 +91,12 @@ public class RollingDie {
             int x = nc.getBestRun(tossArr);
             System.out.println(x);
         }
+
+        System.out.println("non-repeating dice set(very low chance of really happening)");
+        int[] x= {1,2,3,4,5,6,7,8,9,1};
+        int y=nc.getBestRun(x);
+        System.out.println(y);
+
     }
 
 }
