@@ -61,7 +61,7 @@ public class RollingDie {
                     else k=values.length;
                 }
             }
-            
+
             if(count>save){
                 save=count;
             }
